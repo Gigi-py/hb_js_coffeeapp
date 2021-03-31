@@ -8,6 +8,7 @@ const addItemToCart = (itemName) => {
   `);
 };
 
+
 const resetCart = () => {
   $('#cart-total').html('0.00');
   $('#cart-items').empty();
@@ -21,6 +22,17 @@ const incrementCartTotal = (price) => {
 
   cartTotal.html(total.toFixed(2));
 };
+
+$('.add-to-order').on('click', () => {
+  addItemToCart('Coffee');
+  incrementCartTotal(1.50);
+})
+
+$('#place-order').on('click', () => {
+  // Increment number of coffees sold and reset the cart
+  incrementCoffeeSold($('#cart-items').children().length);
+  resetCart();
+})
 
 const incrementCoffeeSold = (amountSold) => {
   let coffeeSold = Number($('#coffee-sold-counter').html());
